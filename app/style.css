@@ -1,0 +1,85 @@
+:root {
+  --bg: #12061f;
+  --panel: #1d0b2e;
+  --panel-2: #2a1145;
+  --line: #3d2358;
+  --text: #f5eefb;
+  --muted: #b9a3d1;
+  --pink: #ff5da2;
+  --orange: #ff8a3d;
+  --gold: #f7c948;
+  --radius: 10px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 22px; max-width: 1280px; margin: 0 auto; }
+.controls { width: 360px; flex: none; display: flex; flex-direction: column; gap: 16px; }
+.controls header h1 {
+  margin: 0; font-size: 34px; letter-spacing: 2px; font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(180deg, #fff3a3 0%, #ffb347 35%, #ff5e62 62%, #ff2e88 85%, #b537f2 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 2px 18px rgba(255, 46, 136, 0.25);
+}
+.controls header .sub { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+.group { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.group h2 { margin: 0; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); }
+.hint { margin: 0; color: var(--muted); font-size: 13px; }
+.sel-name { margin: 0; font-weight: 700; color: var(--pink); letter-spacing: 1px; }
+label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 13px; }
+label.inline { flex-direction: row; align-items: center; gap: 8px; }
+input[type=text], select {
+  font: inherit; color: var(--text); background: var(--panel-2);
+  border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%;
+}
+input[type=text]:focus, select:focus, button:focus-visible { outline: 2px solid var(--pink); outline-offset: 1px; }
+input[type=range] { width: 100%; accent-color: var(--pink); }
+button {
+  font: inherit; font-weight: 700; padding: 9px 12px; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--panel-2); color: var(--text); cursor: pointer;
+}
+button:hover { border-color: var(--pink); }
+button.primary { background: var(--pink); border-color: var(--pink); color: #fff; }
+button.export {
+  padding: 14px; font-size: 17px; letter-spacing: 1px;
+  background: linear-gradient(90deg, #ff5e62, #ff2e88, #b537f2); border: 0; color: #fff;
+}
+button.export:hover { filter: brightness(1.12); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.row > button { flex: 1 1 auto; }
+.row2 { display: flex; gap: 10px; }
+.row2 > label { flex: 1; min-width: 0; }
+.slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.slot {
+  display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
+  padding: 8px; text-align: left; font-size: 12px; border-style: dashed;
+}
+.slot-id { font-weight: 900; letter-spacing: 1px; color: var(--gold); }
+.slot-label { color: var(--muted); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.slot.active { border-color: var(--pink); border-style: solid; background: #3d1155; }
+.slot.filled { border-style: solid; }
+.slot.filled .slot-label { color: var(--text); }
+.grades { display: flex; gap: 8px; flex-wrap: wrap; }
+.grade { flex: 1 1 30%; font-size: 13px; padding: 8px 6px; }
+.grade.active { background: var(--pink); border-color: var(--pink); color: #fff; }
+#status { margin: 0; color: var(--gold); font-size: 13px; min-height: 1.2em; }
+.fine { margin: 0; color: var(--muted); font-size: 12px; }
+.stage { flex: 1; display: flex; justify-content: center; position: sticky; top: 22px; }
+#cover {
+  width: min(62vh, 100%); height: auto; max-height: 92vh;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--line);
+  border-radius: 4px; touch-action: none; cursor: grab;
+}
+#cover.dropping { outline: 3px dashed var(--pink); outline-offset: 6px; }
+body.shot-cover .controls { display: none; }
+body.shot-cover .app { padding: 0; max-width: none; }
+body.shot-cover .stage { position: static; }
+body.shot-cover #cover { width: 100vw; height: 100vh; max-height: none; object-fit: contain; box-shadow: none; border-radius: 0; background: #12061f; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; align-items: stretch; }
+  .controls { width: 100%; }
+  .stage { position: static; }
+  #cover { width: min(100%, 62vh); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

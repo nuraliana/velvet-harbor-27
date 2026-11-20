@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Line — GTA 6-style Cover Studio</title>
+<meta name="description" content="Turn your photos and a caption into a GTA 6-style multi-panel poster. Offline, in your browser — photos never leave your machine.">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <header>
+      <h1>VICE LINE</h1>
+      <p class="sub">Your photos → a GTA 6-style poster. Offline. Photos never leave this machine.</p>
+    </header>
+
+    <div class="group">
+      <h2>1 · Photos — click a panel, then add a photo</h2>
+      <div id="slots" class="slots" role="group" aria-label="Photo panels"></div>
+      <div class="row">
+        <button id="uploadBtn" type="button" class="primary">Add photo to selected panel</button>
+        <input id="photo" type="file" accept="image/*" hidden>
+      </div>
+      <p class="hint">Or drag a photo straight onto a panel on the cover, or paste one (Ctrl+V). Scroll on a panel to zoom it.</p>
+      <div class="row">
+        <button id="demoBtn" type="button">Load demo cover</button>
+        <button id="fillAllBtn" type="button">One photo, all panels</button>
+        <button id="shuffleBtn" type="button">Shuffle panels</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>2 · Crop the selected panel</h2>
+      <p id="selName" class="sel-name">HERO — THE DRIVER</p>
+      <label>Zoom <span id="zoomVal">1.00×</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <label>Pan left–right <input id="panX" type="range" min="-1" max="1" step="0.01" value="0"></label>
+      <label>Pan up–down <input id="panY" type="range" min="-1" max="1" step="0.01" value="0"></label>
+      <div class="row">
+        <button id="fitBtn" type="button">Mode: Fill</button>
+        <button id="flipBtn" type="button">Flip</button>
+        <button id="smartBtn" type="button">Smart crop</button>
+        <button id="clearBtn" type="button">Clear photo</button>
+      </div>
+      <label>Cast label for this panel
+        <input id="castInput" type="text" maxlength="18" value="THE DRIVER">
+      </label>
+      <p class="hint">Tip: drag the photo on the cover to move it, arrow keys nudge it too.</p>
+    </div>
+
+    <div class="group">
+      <h2>3 · Words</h2>
+      <label>Title <input id="titleInput" type="text" maxlength="24" value="NEON TIDE"></label>
+      <label>Subtitle (script) <input id="subtitleInput" type="text" maxlength="32" value="chasing the last light"></label>
+      <label>Tagline <input id="taglineInput" type="text" maxlength="60" value="ONE COAST · FIVE STORIES · NO WAY HOME"></label>
+      <label>Press quote <input id="quoteInput" type="text" maxlength="48" value="Pure golden-hour mayhem"></label>
+      <label>Quote source <input id="quoteSrcInput" type="text" maxlength="32" value="The Harbor Gazette"></label>
+      <div class="row2">
+        <label>Volume <input id="volInput" type="text" maxlength="12" value="VOL. 1"></label>
+        <label>Billing line <input id="billingInput" type="text" maxlength="48" value="A SUNSET PICTURES PRODUCTION"></label>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>4 · Grade &amp; finish</h2>
+      <div id="grades" class="grades" role="group" aria-label="Colour grade"></div>
+      <label>Grade strength <span id="gradeIntVal">100%</span>
+        <input id="gradeInt" type="range" min="0" max="1" step="0.05" value="1">
+      </label>
+      <div class="row">
+        <button id="slantBtn" type="button">Slanted panels ✓</button>
+        <label class="inline">Border
+          <select id="borderSel">
+            <option value="gold" selected>Gold</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+          </select>
+        </label>
+        <label class="inline">Export size
+          <select id="sizeSel">
+            <option value="4:5" selected>4:5 post · 1080×1350</option>
+            <option value="1:1">1:1 square · 1080×1080</option>
+            <option value="9:16">9:16 story · 1080×1920</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <button id="exportBtn" type="button" class="export">Export PNG</button>
+    <p id="status" role="status">Demo cover loaded — swap any panel with your own photo.</p>
+    <p class="fine">Runs entirely offline from its own files. No uploads, no accounts, no watermark.</p>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="540" height="675" aria-label="The cover"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
